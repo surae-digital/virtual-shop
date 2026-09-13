@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Player Center | Surae Digital Shop</title><link rel="preconnect" href="https://yoceazwcewyksfzafhlu.supabase.co" crossorigin><link rel="dns-prefetch" href="//yoceazwcewyksfzafhlu.supabase.co">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="portal.css">
+</head>
+<body class="portal-body">
+  <header class="portal-topbar">
+    <a class="portal-brand" href="player.html">
+      <span class="portal-brand-mark">S</span>
+      <span>SURAE<small>DIGITAL SHOP</small></span>
+    </a>
+    <nav class="portal-nav">
+      <a class="active" href="#dashboard">DASHBOARD</a>
+      <a href="#shop">SHOP</a>
+      <a href="#orders">INVOICES</a>
+      <div class="player-nav-summary">
+        <strong id="navPlayerName">PLAYER</strong>
+        <small id="navPlayerCredits">₱0.00</small>
+      </div>
+      <button id="playerLogout" type="button">LOG OUT</button>
+    </nav>
+  </header>
+
+  <main class="portal-shell" id="dashboard">
+    <section class="portal-hero">
+      <div>
+        <span class="portal-kicker">PLAYER CONTROL CENTER</span>
+        <h1>WELCOME BACK, <em id="heroPlayerName">PLAYER</em></h1>
+        <p>Manage your Surae account, wallet balance, top-ups and recent activity from one place.</p>
+      </div>
+      <div class="portal-online"><i></i> ACCOUNT ONLINE</div>
+    </section>
+
+    <section class="portal-grid player-overview">
+      <article class="portal-card profile-card">
+        <div class="card-label">PLAYER PROFILE</div>
+        <div class="profile-main">
+          <div class="profile-avatar" id="playerInitial">S</div>
+          <div>
+            <h2 id="playerName">Player</h2>
+            <p id="playerEmail">—</p>
+            <p id="playerMobile">—</p>
+          </div>
+        </div>
+        <div class="account-number-block">
+          <span>ACCOUNT NUMBER</span>
+          <strong id="playerAccountNumber">—</strong>
+          <button id="copyPlayerAccount" type="button">COPY</button>
+        </div>
+      </article>
+
+      <article class="portal-card wallet-card">
+        <div class="card-label">SURAE WALLET</div>
+        <span class="wallet-caption">AVAILABLE CREDITS</span>
+        <div class="wallet-balance"><b>₱</b><span id="playerCredits">0.00</span></div>
+        <p>Use your Surae Credits for faster checkout on supported products and services.</p>
+        <button class="portal-primary" id="openTopUp" type="button">TOP UP CREDITS ↗</button>
+      </article>
+
+      <article class="portal-card status-card">
+        <div class="card-label">ACCOUNT STATUS</div>
+        <div class="status-value"><i></i><strong id="playerStatus">ACTIVE</strong></div>
+        <div class="mini-meta">
+          <span>MEMBER SINCE</span>
+          <b id="playerSince">—</b>
+        </div>
+        <div class="mini-meta">
+          <span>ACCOUNT TYPE</span>
+          <b>PLAYER</b>
+        </div>
+      </article>
+    </section>
+
+    <section class="portal-section">
+      <div class="portal-section-head">
+        <div><span>01</span><h2>QUICK ACCESS</h2></div>
+        <p>Jump straight into your most-used Surae services.</p>
+      </div>
+      <div class="quick-grid">
+        <button class="quick-card player-shop-shortcut" type="button" data-player-game="MLBB"><small>MOBA</small><strong>MOBILE LEGENDS</strong><span>SHOP MLBB ↓</span></button>
+        <button class="quick-card player-shop-shortcut" type="button" data-player-game="CODM"><small>FPS</small><strong>CALL OF DUTY MOBILE</strong><span>SHOP CODM ↓</span></button>
+        <button class="quick-card player-shop-shortcut" type="button" data-player-game="VALORANT"><small>TACTICAL</small><strong>VALORANT</strong><span>SHOP VALORANT ↓</span></button>
+        <button class="quick-card player-shop-shortcut" type="button" data-player-game="ALL"><small>CATALOG</small><strong>ALL PRODUCTS</strong><span>OPEN SHOP ↓</span></button>
+      </div>
+    </section>
+
+
+    <section class="portal-section player-shop-section" id="shop">
+      <div class="portal-section-head player-shop-heading">
+        <div><span>02</span><h2>SHOP PRODUCTS</h2></div>
+        <div class="player-shop-head-actions">
+          <p>Order directly from your player account. You do not need to return to the public website.</p>
+          <button class="player-cart-button" id="openPlayerCart" type="button">CART <b id="playerCartCount">0</b></button>
+        </div>
+      </div>
+      <div class="player-shop-filters" id="playerShopFilters">
+        <button class="active" type="button" data-shop-filter="ALL">ALL</button>
+        <button type="button" data-shop-filter="MLBB">MOBILE LEGENDS</button>
+        <button type="button" data-shop-filter="CODM">CODM</button>
+        <button type="button" data-shop-filter="VALORANT">VALORANT</button>
+        <button type="button" data-shop-filter="HOK">HONOR OF KINGS</button>
+        <button type="button" data-shop-filter="ROBLOX">ROBLOX</button>
+      </div>
+      <div class="player-product-grid" id="playerProductGrid"></div>
+      <div class="empty-state" id="playerNoProducts" hidden>No products are available in this category right now.</div>
+    </section>
+
+    <section class="portal-section">
+      <div class="portal-section-head">
+        <div><span>03</span><h2>RECENT ACTIVITY</h2></div>
+        <p>Wallet and account transactions linked to your player number.</p>
+      </div>
+      <div class="portal-card table-card">
+        <div class="portal-table-wrap">
+          <table class="portal-table">
+            <thead><tr><th>TRANSACTION</th><th>TYPE</th><th>AMOUNT</th><th>STATUS</th><th>DATE</th></tr></thead>
+            <tbody id="playerTransactions"></tbody>
+          </table>
+        </div>
+        <div class="empty-state" id="playerNoTransactions">No transactions yet.</div>
+      </div>
+    </section>
+
+    <section class="portal-section" id="orders">
+      <div class="portal-section-head">
+        <div><span>04</span><h2>MY INVOICES</h2></div>
+        <p>Purchases and top-ups are processed only after Admin approval.</p>
+      </div>
+      <div class="portal-card table-card">
+        <div class="portal-table-wrap">
+          <table class="portal-table">
+            <thead><tr><th>INVOICE</th><th>ITEM</th><th>AMOUNT</th><th>STATUS</th><th>DATE</th></tr></thead>
+            <tbody id="playerInvoices"></tbody>
+          </table>
+        </div>
+        <div class="empty-state" id="playerNoInvoices">No invoices yet.</div>
+      </div>
+    </section>
+  </main>
+
+  <div class="portal-modal" id="topUpModal" aria-hidden="true">
+    <div class="portal-modal-backdrop" data-close-topup></div>
+    <section class="portal-modal-panel">
+      <header>
+        <div><span>WALLET</span><h2>TOP UP CREDITS</h2></div>
+        <button type="button" data-close-topup>×</button>
+      </header>
+      <div class="topup-body">
+        <p>Select an amount, enter your payment reference number, and upload a screenshot showing the same reference number.</p>
+        <div class="topup-presets">
+          <button data-amount="100">₱100</button>
+          <button data-amount="300">₱300</button>
+          <button data-amount="500">₱500</button>
+          <button data-amount="1000">₱1,000</button>
+        </div>
+        <label class="topup-custom"><span>₱</span><input id="playerTopUpAmount" type="number" min="50" step="10" placeholder="Custom amount"></label>
+
+        <label class="proof-field">
+          <span>PAYMENT METHOD *</span>
+          <select id="topUpPaymentMethod" required>
+            <option value="">Select payment method</option>
+            <option value="Bank">Bank</option>
+            <option value="GCash">GCash</option>
+            <option value="PayMaya">PayMaya</option>
+          </select>
+          <small>Surae Credits cannot be used to top up Surae Credits.</small>
+        </label>
+
+        <label class="proof-field">
+          <span>PAYMENT REFERENCE NUMBER *</span>
+          <input id="topUpReference" type="text" placeholder="Enter transaction/reference number" required>
+        </label>
+
+        <label class="proof-upload" for="topUpProof">
+          <input id="topUpProof" type="file" accept="image/png,image/jpeg,image/webp" required>
+          <span class="proof-upload-icon">＋</span>
+          <strong>UPLOAD PAYMENT SCREENSHOT *</strong>
+          <small>The payment reference number must be clearly visible. JPG, PNG or WebP only, maximum 5 MB.</small>
+        </label>
+
+        <div class="proof-preview" id="topUpProofPreview" hidden>
+          <img id="topUpProofImage" alt="Payment proof preview">
+          <div><strong id="topUpProofName"></strong><small>Payment screenshot ready</small></div>
+        </div>
+
+        <label class="proof-confirm">
+          <input id="topUpProofConfirm" type="checkbox">
+          <span>I confirm that the reference number entered above is visible in the uploaded payment screenshot.</span>
+        </label>
+
+        <button class="portal-primary wide" id="confirmPlayerTopUp" type="button">SUBMIT TOP-UP REQUEST</button>
+        <div class="portal-note" id="playerTopUpMessage">Your top-up will be submitted for verification before credits are added.</div>
+      </div>
+    </section>
+  </div>
+
+  <div class="portal-modal" id="playerCartModal" aria-hidden="true">
+    <div class="portal-modal-backdrop" data-close-player-cart></div>
+    <section class="portal-modal-panel player-cart-panel">
+      <header>
+        <div><span>PLAYER SHOP</span><h2>YOUR CART & CHECKOUT</h2></div>
+        <button type="button" data-close-player-cart>×</button>
+      </header>
+      <div class="player-cart-body">
+        <div id="playerCartItems" class="player-cart-items"></div>
+        <div id="playerCartEmpty" class="empty-state">Your cart is empty.</div>
+        <div class="player-cart-total"><span>ORDER TOTAL</span><strong id="playerCartTotal">₱0.00</strong></div>
+
+        <label class="proof-field">
+          <span>GAME ACCOUNT / USER INFORMATION *</span>
+          <textarea id="playerCheckoutUserInfo" rows="3" placeholder="Enter the Player ID / UID / Riot ID for the products in this order. If ordering for multiple games, list each game and account ID."></textarea>
+        </label>
+
+        <div class="proof-field">
+          <span>PAYMENT METHOD *</span>
+          <div class="player-payment-options" id="playerPaymentOptions"></div>
+        </div>
+
+        <div id="playerExternalPaymentFields">
+          <label class="proof-field">
+            <span>PAYMENT REFERENCE NUMBER *</span>
+            <input id="playerCheckoutReference" type="text" placeholder="Enter GCash / bank / payment reference">
+          </label>
+          <label class="proof-upload" for="playerCheckoutProof">
+            <input id="playerCheckoutProof" type="file" accept="image/png,image/jpeg,image/webp">
+            <span class="proof-upload-icon">＋</span>
+            <strong>UPLOAD PAYMENT SCREENSHOT *</strong>
+            <small>The reference number must be visible. JPG, PNG or WebP only, maximum 5 MB.</small>
+          </label>
+          <div class="proof-preview" id="playerCheckoutProofPreview" hidden>
+            <img id="playerCheckoutProofImage" alt="Payment proof preview">
+            <div><strong id="playerCheckoutProofName"></strong><small>Payment screenshot ready</small></div>
+          </div>
+          <label class="proof-confirm">
+            <input id="playerCheckoutProofConfirm" type="checkbox">
+            <span>I confirm that the payment screenshot clearly shows the reference number entered above.</span>
+          </label>
+        </div>
+
+        <div class="player-wallet-checkout" id="playerWalletCheckout" hidden>
+          <span>AVAILABLE SURAE CREDITS</span>
+          <strong id="playerCheckoutWalletBalance">₱0.00</strong>
+          <small>Credits are deducted when the order is successfully submitted.</small>
+        </div>
+
+        <button class="portal-primary wide" id="playerPlaceOrder" type="button">PLACE ORDER</button>
+        <div class="portal-note" id="playerCheckoutMessage">Add products to your cart, then complete the order here.</div>
+      </div>
+    </section>
+  </div>
+
+  <script src="surae-config.js"></script>
+  <script src="surae-api.js"></script>
+  <script src="account-store.js"></script>
+  <script src="catalog-store.js"></script>
+  <script src="cart-store.js"></script>
+  <script src="order-store.js"></script>
+  <script src="payment-proof-store.js"></script>
+  <script src="player-app.js"></script>
+  <script src="player-shop.js"></script>
+</body>
+</html>
