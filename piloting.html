@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#020914">
+  <title>Account Piloting | Surae Digital Shop</title><link rel="preconnect" href="https://yoceazwcewyksfzafhlu.supabase.co" crossorigin><link rel="dns-prefetch" href="//yoceazwcewyksfzafhlu.supabase.co">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="piloting.css">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><div class="brand-mark">S</div><div class="brand-name">SURAE<small>DIGITAL SHOP</small></div></a>
+    <nav class="nav-links"><a href="index.html#home">Home</a><a href="index.html#games">Games</a><a class="active" href="piloting.html">Special Services</a><a href="index.html#how">How to Order</a><a href="index.html#payment">Payment Methods</a><a href="index.html#faq">FAQ</a></nav>
+    <div class="nav-actions"><a class="slogan" href="#piloting-games">PILOT NOW</a></div>
+  </div>
+</header>
+
+<main>
+  <section class="pilot-hero">
+    <div class="wrap pilot-hero-copy">
+      <div class="eyebrow">Special Service</div>
+      <h1>ACCOUNT PILOTING</h1>
+      <p>Select your game to review and digitally sign the Account Piloting Service Agreement before placing an order.</p>
+      <div class="pilot-note">For piloting, only account identifiers are collected on this website. <strong>Game-account passwords are never collected here or included in the downloadable agreement.</strong> If temporary access is required after approval, Surae will arrange a separate access handoff process.</div>
+    </div>
+  </section>
+
+  <section class="pilot-games" id="piloting-games">
+    <div class="wrap">
+      <div class="section-title-row pilot-title-row"><div><div class="eyebrow">Choose your game</div><h2>PILOTING SERVICES</h2></div><p>Tap a card to get a rank-up quote before reviewing the service agreement.</p></div>
+      <div class="pilot-card-grid">
+        <button class="pilot-game-card" type="button" data-game="Mobile Legends: Bang Bang" data-short="MLBB">
+          <div class="pilot-game-art" style="background-image:url('assets/hd/mlbb-hero-hd.webp')"></div>
+          <div class="pilot-game-body"><div><span>ACCOUNT PILOTING</span><h3>MOBILE LEGENDS</h3></div><b>GET QUOTE →</b></div>
+        </button>
+        <button class="pilot-game-card" type="button" data-game="Call of Duty: Mobile" data-short="CODM">
+          <div class="pilot-game-art" style="background-image:url('assets/hd/codm-hero-hd.webp')"></div>
+          <div class="pilot-game-body"><div><span>ACCOUNT PILOTING</span><h3>CALL OF DUTY MOBILE</h3></div><b>GET QUOTE →</b></div>
+        </button>
+      </div>
+      <div class="pilot-steps">
+        <div><strong>01</strong><span>Select your game</span></div><div><strong>02</strong><span>Enter rank & get quote</span></div><div><strong>03</strong><span>Agree to quoted price</span></div><div><strong>04</strong><span>Review & sign agreement</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer"><div class="wrap footer-main"><div class="footer-brand"><div class="brand-mark">S</div><div class="brand-name">SURAE<small>DIGITAL SHOP</small></div></div><div class="trust"><div><i>♢</i> Secure Transactions</div><div><i>ϟ</i> Fast Service</div><div><i>◉</i> Reliable Support</div></div><div class="footer-tag">GAMERS<br>PLAY<br>TOGETHER</div></div></footer>
+
+
+<div class="quote-modal" id="quoteModal" aria-hidden="true">
+  <div class="quote-backdrop" data-close-quote></div>
+  <section class="quote-panel" role="dialog" aria-modal="true" aria-labelledby="quoteTitle">
+    <header class="quote-topbar">
+      <div><span class="agreement-kicker">RANK-UP ESTIMATE</span><h2 id="quoteTitle">GET YOUR PILOTING QUOTE</h2></div>
+      <button type="button" class="modal-close" data-close-quote aria-label="Close quote">×</button>
+    </header>
+    <div class="quote-body">
+      <div class="quote-game-line"><small>Selected Game</small><strong id="quoteGame">Mobile Legends: Bang Bang</strong></div>
+
+      <form id="quoteForm" novalidate>
+        <div class="quote-fields" id="mlbbQuoteFields" data-game-section="mlbb" hidden>
+          <div class="quote-section-label"><strong>MLBB Rank-Up Details</strong><span>MLBB uses ranks and stars.</span></div>
+          <label><span>Current Rank *</span>
+            <select id="mlbbCurrentRank">
+              <option value="">Select current rank</option>
+              <option>Warrior</option><option>Elite</option><option>Master</option><option>Grandmaster</option>
+              <option>Epic</option><option>Legend</option><option>Mythic</option><option>Mythical Honor</option>
+              <option>Mythical Glory</option><option>Mythical Immortal</option>
+            </select>
+          </label>
+          <label><span>Target Rank *</span>
+            <select id="mlbbTargetRank">
+              <option value="">Select target rank</option>
+              <option>Warrior</option><option>Elite</option><option>Master</option><option>Grandmaster</option>
+              <option>Epic</option><option>Legend</option><option>Mythic</option><option>Mythical Honor</option>
+              <option>Mythical Glory</option><option>Mythical Immortal</option>
+            </select>
+          </label>
+          <label><span>Current Stars *</span><input id="mlbbCurrentStars" type="number" min="0" step="1" placeholder="e.g. 12"></label>
+          <label><span>Target Stars *</span><input id="mlbbTargetStars" type="number" min="0" step="1" placeholder="e.g. 38"></label>
+        </div>
+
+        <div class="quote-fields" id="codmQuoteFields" data-game-section="codm" hidden>
+          <div class="quote-section-label"><strong>CODM Rank-Up Details</strong><span>CODM uses ranks and ranked points.</span></div>
+          <label><span>Current Rank *</span>
+            <select id="codmCurrentRank">
+              <option value="">Select current rank</option>
+              <option>Rookie</option><option>Veteran</option><option>Elite</option><option>Pro</option>
+              <option>Master</option><option>Grandmaster</option><option>Legendary</option>
+            </select>
+          </label>
+          <label><span>Target Rank *</span>
+            <select id="codmTargetRank">
+              <option value="">Select target rank</option>
+              <option>Rookie</option><option>Veteran</option><option>Elite</option><option>Pro</option>
+              <option>Master</option><option>Grandmaster</option><option>Legendary</option>
+            </select>
+          </label>
+          <label><span>Current Points *</span><input id="codmCurrentPoints" type="number" min="0" step="1" placeholder="Current ranked points"></label>
+          <label><span>Target Points *</span><input id="codmTargetPoints" type="number" min="0" step="1" placeholder="Desired ranked points"></label>
+        </div>
+
+        <div class="quote-result" id="quoteResult" hidden>
+          <div class="quote-game-badge" id="quoteGameBadge"></div>
+          <div><small id="quoteUnitsLabel">Stars Needed</small><strong id="quoteUnits">0</strong></div>
+          <div><small>Quoted Price</small><strong id="quotePrice">₱0.00</strong></div>
+          <p id="quoteBreakdown"></p>
+        </div>
+
+        <div class="quote-warning" id="pricingSetupNotice">
+          Piloting rates are loaded securely from the live shop configuration. If a rate is missing, an administrator can update it from the Admin product management page.
+        </div>
+        <div class="form-error" id="quoteError"></div>
+        <div class="quote-actions">
+          <button type="button" class="secondary-action" data-close-quote>CANCEL</button>
+          <button type="submit" class="primary-action" id="calculateQuote">CALCULATE QUOTE</button>
+          <button type="button" class="primary-action" id="agreeQuote" hidden>AGREE</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</div>
+
+<div class="agreement-modal" id="agreementModal" aria-hidden="true">
+  <div class="agreement-backdrop" data-close-modal></div>
+  <section class="agreement-panel" role="dialog" aria-modal="true" aria-labelledby="agreementTitle">
+    <header class="agreement-topbar">
+      <div><span class="agreement-kicker">DIGITAL SERVICE AGREEMENT</span><h2 id="agreementTitle">ACCOUNT PILOTING AGREEMENT</h2></div>
+      <button type="button" class="modal-close" data-close-modal aria-label="Close agreement">×</button>
+    </header>
+
+    <div class="agreement-scroll" id="agreementScroll">
+      <div class="agreement-summary">
+        <div><small>Selected Service</small><strong id="selectedGame">Mobile Legends: Bang Bang</strong></div>
+        <div><small>Accepted Quote</small><strong id="agreementQuotePrice">—</strong></div>
+        <div><small>Pricing Basis</small><strong id="agreementPricingMode">—</strong></div>
+        <div><small>Agreement Version</small><strong>SPA-2026-09-v1</strong></div>
+        <div><small>Current Rank</small><strong id="agreementCurrentRank">—</strong></div>
+        <div><small>Target Rank</small><strong id="agreementTargetRank">—</strong></div>
+        <div><small id="agreementUnitsLabel">Stars / Points Needed</small><strong id="agreementUnits">—</strong></div>
+      </div>
+      <div class="agreement-quote-breakdown" id="agreementQuoteBreakdown"></div>
+
+      <article class="agreement-copy" id="agreementText">
+        <h3>Account Piloting Service Agreement</h3>
+        <p>This Account Piloting Service Agreement (the “Agreement”) is entered into electronically between <strong>Surae Digital Shop</strong> (the “Provider”) and the customer identified in the signing section below (the “Customer”). By signing and submitting this Agreement, the Customer requests the Provider to perform account piloting services for the game selected above and agrees to the terms below.</p>
+
+        <h4>1. Customer Authority and Eligibility</h4>
+        <p>The Customer confirms that they are at least eighteen (18) years old, have legal capacity to enter into this Agreement, and are the lawful owner of the game account or are expressly authorized by the lawful owner to request the service. The Customer must not submit an account obtained through theft, fraud, unauthorized access, or any other unlawful means.</p>
+
+        <h4>2. Scope of the Piloting Service</h4>
+        <p>The Provider may access and play the selected game account only to perform the specific piloting package or objectives purchased by the Customer. The Provider is not authorized to sell, transfer, permanently alter ownership of, or use the account for any unrelated purpose. Any additional task outside the purchased service requires the Customer's further approval.</p>
+
+        <h4>3. Account Access and Security</h4>
+        <p>The Customer expressly authorizes temporary account access strictly for performance of the ordered service. This website does not collect game-account passwords. Where temporary credentials are required, Surae Digital Shop will arrange a separate approved handoff method after the service request is reviewed. The Provider must use reasonable safeguards, restrict credential access to personnel who need it to perform the service, and stop using the credentials when the service is completed or terminated. The Customer should change the account password after completion whenever the game platform permits.</p>
+
+        <h4>4. Game Publisher Rules and Account Risk</h4>
+        <p>The Customer understands that third-party game publishers control their own platforms, rules, security systems, suspensions, rankings, updates, and enforcement decisions. The Provider does not control those systems and does not guarantee that a publisher will permit account piloting. The Customer should review the applicable game's current terms before purchasing. The Provider will not knowingly perform instructions that require cheating software, unauthorized exploits, fraud, or other unlawful activity.</p>
+
+        <h4>5. Service Performance and Customer Instructions</h4>
+        <p>The Provider will perform the purchased service with reasonable care and in accordance with the package description and agreed Customer instructions. Estimated completion times are estimates unless expressly stated otherwise. The Customer must provide accurate account, server, rank, and service information and promptly advise the Provider of any material changes affecting the order.</p>
+
+        <h4>6. Fees, Cancellations, Refunds, and Complaints</h4>
+        <p>The Customer confirms that the rank-up quote displayed immediately before this Agreement was accepted before signing. The accepted current rank, target rank, required stars or points, pricing breakdown, and total quoted price shown above form part of this Agreement. The price and inclusions displayed or confirmed at checkout form part of the transaction. Any refund, cancellation, re-performance, or credit will be handled according to the transaction terms presented to the Customer and applicable Philippine consumer law. Nothing in this Agreement is intended to waive rights that cannot lawfully be waived. Customer complaints may be submitted through the Provider's published support channel for internal resolution.</p>
+
+        <h4>7. Personal Data and Privacy</h4>
+        <p>For the purpose of entering into and performing this Agreement, the Provider may process the Customer's name, contact details, player/account identifiers, selected service, signature, agreement record, transaction reference, and related support communications. The Provider will use such information for order verification, service delivery, customer support, fraud prevention, dispute handling, and legal or accounting recordkeeping, and will limit collection to information reasonably necessary for those purposes. Personal data will be handled only for legitimate transaction and service purposes, with reasonable safeguards, and in accordance with applicable Philippine data privacy law. Where credentials are required for piloting, passwords are not collected through this website and must be handled separately from the ordinary agreement record using the approved temporary-access process provided after review.</p>
+
+        <h4>8. Electronic Contract and Signature</h4>
+        <p>The Customer agrees to transact electronically and intends the drawn signature, together with the Customer's typed identity, affirmative checkboxes, agreement version, transaction reference, and signing date/time, to evidence acceptance of this Agreement. The Customer may save or print a copy of the completed agreement for their records.</p>
+
+        <h4>9. Limitation of Responsibility</h4>
+        <p>To the extent permitted by law, neither party is responsible for losses caused solely by events outside that party's reasonable control, including game-server outages, publisher maintenance, platform-wide security events, or publisher actions not caused by that party's breach of this Agreement. This clause does not exclude liability that cannot lawfully be excluded, including liability arising from fraud, willful misconduct, or obligations imposed by applicable consumer or data protection law.</p>
+
+        <h4>10. Suspension or Termination</h4>
+        <p>The Provider may pause or terminate the service if the Customer provides inaccurate ownership information, requests unlawful or prohibited conduct, interferes with the account while piloting in a manner that creates a security or service risk, or materially breaches this Agreement. The Customer may request cancellation subject to work already performed, the transaction terms presented to the Customer, and applicable law.</p>
+
+        <h4>11. Governing Law and Severability</h4>
+        <p>This Agreement is governed by the laws of the Republic of the Philippines. If any provision is found invalid or unenforceable, the remaining provisions will continue to apply to the extent permitted by law. Any mandatory consumer remedies or jurisdiction rights provided by Philippine law remain unaffected.</p>
+
+        <h4>12. Entire Agreement and Order Details</h4>
+        <p>This Agreement, the selected piloting package/order details, and applicable checkout terms comprise the agreement for the piloting transaction. In case of a conflict, mandatory Philippine law prevails.</p>
+      </article>
+
+      <section class="signing-section">
+        <div class="signing-heading"><div><span class="agreement-kicker">CUSTOMER ACCEPTANCE</span><h3>Sign the Agreement</h3></div><p>Complete all required fields, then draw your signature.</p></div>
+
+        <form id="agreementForm" novalidate>
+          <div class="form-grid">
+            <label><span>Full Legal Name *</span><input id="fullName" name="fullName" autocomplete="name" required placeholder="Juan Dela Cruz"></label>
+            <label><span>Email Address *</span><input id="email" name="email" type="email" autocomplete="email" required placeholder="name@example.com"></label>
+            <label><span>Mobile Number *</span><input id="mobile" name="mobile" type="tel" autocomplete="tel" required placeholder="09XX XXX XXXX"></label>
+            <label><span>Player / User ID *</span><input id="playerId" name="playerId" required placeholder="Game Player ID"></label>
+            <label><span>Facebook Account Name *</span><input id="facebookAccountName" name="facebookAccountName" required placeholder="Name shown on Facebook"></label>
+            <label><span>In-game Name</span><input id="ign" name="ign" placeholder="Optional"></label>
+            <label class="full-row mlbb-account-field" id="mlbbAccountField" hidden><span>MLBB Account / Login Type *</span><select id="mlbbAccountType" name="mlbbAccountType"><option value="">Select account type</option><option>Moonton account</option><option>Tiktok account</option><option>Gmail account</option><option>Facebook account</option><option>Whatsapp account</option><option>Telegram account</option><option>VK account</option></select></label>
+            <div class="full-row credential-fields" id="credentialFields" hidden>
+              <div class="credential-note"><strong>Account access details</strong><span>For security, Surae never collects your game-account password on this website. Enter only the username/account identifier. Temporary access, if required, will be arranged separately after the service is approved.</span></div>
+              <div class="credential-grid">
+                <label><span>Username / Account Identifier *</span><input id="accountUsername" name="accountUsername" autocomplete="off" placeholder="Username / email / mobile used to identify the login"></label>
+                <input id="accountPassword" type="hidden" value="">
+              </div>
+            </div>
+            <div class="full-row credential-fields" id="codmCredentialFields" hidden>
+              <div class="credential-note"><strong>Garena Account</strong><span>For security, Surae never collects your Garena password on this website. Enter only the account identifier. Temporary access will be arranged separately after approval.</span></div>
+              <div class="credential-grid">
+                <label><span>Garena Username / Account Identifier *</span><input id="codmUsername" name="codmUsername" autocomplete="off" placeholder="Garena username / email / mobile"></label>
+                <input id="codmPassword" type="hidden" value="">
+              </div>
+            </div>
+          </div>
+
+          <div class="acceptance-boxes">
+            <label class="check-row"><input id="ageCheck" type="checkbox" required><span>I confirm that I am at least 18 years old and have legal capacity to enter into this Agreement.</span></label>
+            <label class="check-row"><input id="ownerCheck" type="checkbox" required><span>I confirm that I own this account or have the account owner's express authorization, and I authorize temporary access solely to perform the purchased piloting service.</span></label>
+            <label class="check-row"><input id="termsCheck" type="checkbox" required><span>I have read and agree to this Account Piloting Service Agreement, including the service risks and electronic-signature provision.</span></label>
+            <label class="check-row"><input id="privacyCheck" type="checkbox" required><span>I understand how the information in this agreement will be processed for the transaction, service delivery, support, fraud prevention, and related records.</span></label>
+          </div>
+
+          <div class="signature-block">
+            <div class="signature-label"><div><span>Draw your signature *</span><small>Use your mouse, touchscreen, or stylus.</small></div><button type="button" id="clearSignature">CLEAR</button></div>
+            <div class="signature-canvas-wrap"><canvas id="signatureCanvas" aria-label="Signature pad"></canvas><span class="sign-here">SIGN HERE</span></div>
+            <input type="hidden" id="signaturePresent" required>
+          </div>
+
+          <div class="electronic-consent">By selecting <strong>“Sign & Accept Agreement”</strong>, you confirm that the information above is accurate and that you intend your drawn signature and electronic acceptance to bind you to this Agreement.</div>
+          <div class="form-error" id="formError" role="alert"></div>
+
+          <div class="agreement-actions">
+            <button type="button" class="secondary-action" data-close-modal>CANCEL</button>
+            <button type="submit" class="primary-action">SIGN &amp; ACCEPT AGREEMENT</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </section>
+</div>
+
+<div class="success-toast" id="successToast" role="status" aria-live="polite"></div>
+<script src="surae-config.js"></script><script src="surae-api.js"></script><script src="catalog-store.js"></script><script src="account-store.js"></script><script src="piloting.js"></script><script src="store-session.js"></script></body>
+</html>

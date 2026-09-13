@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow">
+  <title>Admin Control | Surae Digital Shop</title><link rel="preconnect" href="https://yoceazwcewyksfzafhlu.supabase.co" crossorigin><link rel="dns-prefetch" href="//yoceazwcewyksfzafhlu.supabase.co">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="portal.css">
+
+  <style>
+    .admin-game-product-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .admin-game-product-card{display:flex;flex-direction:column;min-height:190px;padding:24px;border:1px solid rgba(255,255,255,.1);border-radius:16px;background:linear-gradient(145deg,rgba(19,31,53,.94),rgba(9,14,27,.96));text-decoration:none;transition:.2s ease}
+    .admin-game-product-card:hover{transform:translateY(-3px);border-color:rgba(85,214,255,.55);box-shadow:0 16px 40px rgba(0,0,0,.25)}
+    .admin-game-product-card span{color:#61dafb;font-size:.72rem;font-weight:900;letter-spacing:.16em}.admin-game-product-card strong{color:#fff;font-size:1.35rem;margin:12px 0 5px}.admin-game-product-card small{color:#8d99af}.admin-game-product-card b{margin-top:auto;padding-top:25px;color:#b995ff;font-size:.76rem;letter-spacing:.08em}
+    @media(max-width:760px){.admin-game-product-grid{grid-template-columns:1fr}}
+  
+    .cloud-admin-gate{position:fixed;inset:0;z-index:99999;background:rgba(4,8,15,.96);display:flex;align-items:center;justify-content:center;padding:20px}.cloud-admin-gate[hidden]{display:none}.cloud-admin-box{width:min(440px,100%);padding:28px;border:1px solid rgba(97,218,251,.28);border-radius:18px;background:#0d1422;box-shadow:0 30px 90px rgba(0,0,0,.5)}.cloud-admin-box h2{margin:6px 0 8px}.cloud-admin-box p{color:#8d99af;line-height:1.5}.cloud-admin-box label{display:block;margin:14px 0}.cloud-admin-box label span{display:block;font-size:.72rem;letter-spacing:.12em;color:#7f8ca3;margin-bottom:7px}.cloud-admin-box input{width:100%;box-sizing:border-box;padding:12px 13px;border-radius:9px;border:1px solid rgba(255,255,255,.12);background:#080e19;color:#fff}.cloud-admin-msg{min-height:20px;margin-top:10px;color:#ff8595}.cloud-admin-btn{width:100%;margin-top:8px;padding:13px;border:0;border-radius:10px;background:#61dafb;color:#061018;font-weight:900;cursor:pointer}
+  </style>
+</head>
+<body class="portal-body admin-body">
+  <div class="cloud-admin-gate" id="cloudAdminGate" hidden>
+    <div class="cloud-admin-box">
+      <span class="portal-kicker">SECURE ADMIN</span><h2>SUPABASE ADMIN LOGIN</h2>
+      <p>Production mode requires an authorized Supabase Admin/Staff account before order statuses can be changed or customer update emails can be sent.</p>
+      <label><span>EMAIL</span><input id="cloudAdminEmail" type="email" autocomplete="username"></label>
+      <label><span>PASSWORD</span><input id="cloudAdminPassword" type="password" autocomplete="current-password"></label>
+      <button class="cloud-admin-btn" id="cloudAdminLogin" type="button">SIGN IN</button>
+      <div class="cloud-admin-msg" id="cloudAdminMessage"></div>
+    </div>
+  </div>
+  <header class="portal-topbar admin-topbar">
+    <a class="portal-brand" href="index.html">
+      <span class="portal-brand-mark">S</span>
+      <span>SURAE<small>ADMIN CONTROL</small></span>
+    </a>
+    <nav class="portal-nav admin-nav">
+      <button class="admin-nav-btn active" data-admin-view="dashboard">DASHBOARD</button>
+      <button class="admin-nav-btn" data-admin-view="orders">ORDERS</button>
+      <button class="admin-nav-btn" data-admin-view="products">PRODUCTS</button>
+      <button class="admin-nav-btn" data-admin-view="customers">CUSTOMERS</button>
+      <button class="admin-nav-btn" data-admin-view="settings">STORE SETTINGS</button>
+      <a href="index.html">VIEW STORE</a>
+    </nav>
+  </header>
+
+  <main class="portal-shell admin-shell">
+    <section class="portal-hero admin-hero">
+      <div>
+        <span class="portal-kicker">SURAE OPERATIONS</span>
+        <h1>STORE <em>CONTROL CENTER</em></h1>
+        <p>Invoices, products, customers, wallet activity and storefront controls in one place.</p>
+      </div>
+      <div class="portal-online admin"><i></i> <span id="adminModeLabel">PROTOTYPE MODE</span></div>
+    </section>
+
+    <!-- DASHBOARD -->
+    <section class="admin-view active" id="adminViewDashboard">
+      <section class="admin-stats">
+        <article><span>TOTAL PLAYERS</span><strong id="statPlayers">0</strong><small>Registered accounts</small></article>
+        <article><span>ACTIVE PRODUCTS</span><strong id="statProducts">0</strong><small>Visible items for sale</small></article>
+        <article><span>WALLET CREDITS</span><strong>₱<b id="statCredits">0.00</b></strong><small>Customer credit balance</small></article>
+        <article><span>OPEN INVOICES</span><strong id="statOpenOrders">0</strong><small>Orders needing attention</small></article>
+      </section>
+
+      <section class="portal-section">
+        <div class="portal-section-head">
+          <div><span>01</span><h2>STORE SNAPSHOT</h2></div>
+          <p>Quick operational view of your storefront.</p>
+        </div>
+        <div class="admin-dashboard-grid">
+          <article class="portal-card admin-dash-card">
+            <span>STORE STATUS</span>
+            <strong id="dashStoreStatus">ONLINE</strong>
+            <small id="dashAnnouncement">No active announcement.</small>
+            <button class="portal-secondary" type="button" data-jump="settings">MANAGE STORE</button>
+          </article>
+          <article class="portal-card admin-dash-card">
+            <span>CATALOG</span>
+            <strong><b id="dashCatalogCount">0</b> ITEMS</strong>
+            <small>Add, edit, hide or delete products.</small>
+            <button class="portal-secondary" type="button" data-jump="products">MANAGE PRODUCTS</button>
+          </article>
+          <article class="portal-card admin-dash-card">
+            <span>INVOICE MANAGEMENT</span>
+            <strong>LIVE BOARD</strong>
+            <small>Track orders in list or Kanban view.</small>
+            <button class="portal-primary" type="button" data-jump="orders">OPEN INVOICES</button>
+          </article>
+        </div>
+      </section>
+
+      <section class="portal-section">
+        <div class="portal-section-head">
+          <div><span>02</span><h2>LATEST INVOICES</h2></div>
+        </div>
+        <div class="portal-card table-card">
+          <div class="portal-table-wrap">
+            <table class="portal-table">
+              <thead><tr><th>INVOICE</th><th>CUSTOMER</th><th>USER INFO</th><th>GAME / PRODUCT</th><th>AMOUNT</th><th>STATUS</th><th>DATE</th></tr></thead>
+              <tbody id="dashboardOrders"></tbody>
+            </table>
+          </div>
+          <div class="empty-state" id="dashboardNoOrders">No invoices yet.</div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ORDERS -->
+    <section class="admin-view" id="adminViewOrders">
+      <section class="portal-section no-top">
+        <div class="portal-section-head admin-head order-head">
+          <div>
+            <span>OPERATIONS</span>
+            <h2>ORDER DASHBOARD</h2>
+          </div>
+          <div class="order-toolbar">
+            <div class="view-switcher" role="group" aria-label="Order view">
+              <button class="active" type="button" data-order-view="list">☷ LIST</button>
+              <button type="button" data-order-view="kanban">▦ KANBAN</button>
+            </div>
+            <input id="orderSearch" type="search" placeholder="Search invoices">
+            <select id="orderStatusFilter">
+              <option value="">ALL STATUSES</option>
+              <option>New Order</option>
+              <option>Awaiting Payment</option>
+              <option>Processing</option>
+              <option>Completed</option>
+              <option>Cancelled</option>
+              <option>Rejected</option>
+            </select>
+            <button class="portal-primary" id="addOrder" type="button">+ NEW INVOICE</button>
+          </div>
+        </div>
+
+        <div class="order-summary-strip">
+          <button data-filter-status="New Order"><span>NEW</span><strong id="countNew">0</strong></button>
+<button data-filter-status="Processing"><span>PROCESSING</span><strong id="countProcessing">0</strong></button>
+          <button data-filter-status="Completed"><span>COMPLETED</span><strong id="countCompleted">0</strong></button>
+          <button data-filter-status="Cancelled"><span>CANCELLED</span><strong id="countCancelled">0</strong></button>
+        </div>
+
+        <div class="order-view active" id="orderListView">
+          <div class="portal-card table-card">
+            <div class="portal-table-wrap">
+              <table class="portal-table order-table">
+                <thead>
+                  <tr>
+                    <th>INVOICE</th><th>CUSTOMER</th><th>GAME / PRODUCT</th><th>AMOUNT</th>
+                    <th>PAYMENT / PROOF</th><th>STATUS</th><th>HANDLER</th><th>DATE</th><th>ACTION</th>
+                  </tr>
+                </thead>
+                <tbody id="orderListBody"></tbody>
+              </table>
+            </div>
+            <div class="empty-state" id="noOrdersList">No invoices found.</div>
+          </div>
+        </div>
+
+        <div class="order-view" id="orderKanbanView">
+          <div class="kanban-board" id="kanbanBoard">
+            <section class="kanban-column" data-kanban-status="New Order">
+              <header><span>NEW INVOICE</span><b data-kanban-count="New Order">0</b></header>
+              <div class="kanban-dropzone" data-drop-status="New Order"></div>
+            </section>
+            <section class="kanban-column awaiting" data-kanban-status="Awaiting Payment">
+              <header><span>AWAITING PAYMENT</span><b data-kanban-count="Awaiting Payment">0</b></header>
+              <div class="kanban-dropzone" data-drop-status="Awaiting Payment"></div>
+            </section>
+<section class="kanban-column processing" data-kanban-status="Processing">
+              <header><span>PROCESSING</span><b data-kanban-count="Processing">0</b></header>
+              <div class="kanban-dropzone" data-drop-status="Processing"></div>
+            </section>
+            <section class="kanban-column completed" data-kanban-status="Completed">
+              <header><span>COMPLETED</span><b data-kanban-count="Completed">0</b></header>
+              <div class="kanban-dropzone" data-drop-status="Completed"></div>
+            </section>
+            <section class="kanban-column cancelled" data-kanban-status="Cancelled">
+              <header><span>CANCELLED</span><b data-kanban-count="Cancelled">0</b></header>
+              <div class="kanban-dropzone" data-drop-status="Cancelled"></div>
+            </section>
+            <section class="kanban-column rejected" data-kanban-status="Rejected">
+              <header><span>REJECTED</span><b data-kanban-count="Rejected">0</b></header>
+              <div class="kanban-dropzone" data-drop-status="Rejected"></div>
+            </section>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section class="admin-view" id="adminViewProducts">
+      <section class="portal-section no-top">
+        <div class="portal-section-head admin-head">
+          <div><span>CATALOG</span><h2>PRODUCTS BY GAME</h2></div>
+          <p>Open a game to add, edit, delete products and manage prices.</p>
+        </div>
+        <div class="admin-game-product-grid">
+          <a class="admin-game-product-card" href="admin-products-mlbb.html"><span>MLBB</span><strong>MOBILE LEGENDS</strong><small>Regular Store + Skin Gifting + Piloting</small><b>MANAGE PRODUCTS →</b></a>
+          <a class="admin-game-product-card" href="admin-products-hok.html"><span>HOK</span><strong>HONOR OF KINGS</strong><small>Regular store + Skin Gifting</small><b>MANAGE PRODUCTS →</b></a>
+          <a class="admin-game-product-card" href="admin-products-codm.html"><span>CODM</span><strong>CALL OF DUTY: MOBILE</strong><small>Regular Store + Piloting</small><b>MANAGE PRODUCTS →</b></a>
+          <a class="admin-game-product-card" href="admin-products-valorant.html"><span>VALORANT</span><strong>VALORANT</strong><small>Regular store products</small><b>MANAGE PRODUCTS →</b></a>
+          <a class="admin-game-product-card" href="admin-products-roblox.html"><span>ROBLOX</span><strong>ROBLOX</strong><small>Regular store products</small><b>MANAGE PRODUCTS →</b></a>
+        </div>
+      </section>
+    </section>
+
+    <!-- CUSTOMERS -->
+    <section class="admin-view" id="adminViewCustomers">
+      <section class="portal-section no-top">
+        <div class="portal-section-head admin-head">
+          <div><span>PLAYERS</span><h2>CUSTOMER ACCOUNTS</h2></div>
+          <div class="admin-tools">
+            <input id="adminSearch" type="search" placeholder="Search name, email or account no.">
+            <button class="portal-primary" id="createDemoPlayer" type="button">+ DEMO PLAYER</button>
+          </div>
+        </div>
+        <div class="portal-card table-card">
+          <div class="portal-table-wrap">
+            <table class="portal-table admin-table">
+              <thead><tr><th>PLAYER</th><th>ACCOUNT NUMBER</th><th>CREDITS</th><th>STATUS</th><th>JOINED</th><th>ACTION</th></tr></thead>
+              <tbody id="adminPlayers"></tbody>
+            </table>
+          </div>
+          <div class="empty-state" id="adminNoPlayers">No player accounts yet.</div>
+        </div>
+      </section>
+
+      <section class="portal-section">
+        <div class="portal-section-head">
+          <div><span>WALLET</span><h2>WALLET ACTIVITY</h2></div>
+        </div>
+        <div class="portal-card table-card">
+          <div class="portal-table-wrap">
+            <table class="portal-table">
+              <thead><tr><th>TRANSACTION</th><th>ACCOUNT</th><th>TYPE</th><th>AMOUNT</th><th>SOURCE</th><th>DATE</th></tr></thead>
+              <tbody id="adminTransactions"></tbody>
+            </table>
+          </div>
+          <div class="empty-state" id="adminNoTransactions">No wallet activity yet.</div>
+        </div>
+      </section>
+    </section>
+
+    <!-- SETTINGS -->
+    <section class="admin-view" id="adminViewSettings">
+      <section class="portal-section no-top">
+        <div class="portal-section-head">
+          <div><span>STORE</span><h2>WEBSITE CONTROLS</h2></div>
+          <p>Prototype controls that feed the dynamic storefront catalog.</p>
+        </div>
+        <div class="settings-grid">
+          <article class="portal-card settings-card">
+            <span class="settings-kicker">STORE AVAILABILITY</span>
+            <h3>Store Status</h3>
+            <label class="toggle-row">
+              <div><strong>Store Online</strong><small>When off, product catalogs show an offline message.</small></div>
+              <input id="settingStoreOnline" type="checkbox">
+            </label>
+          </article>
+          <article class="portal-card settings-card">
+            <span class="settings-kicker">CUSTOMER MESSAGE</span>
+            <h3>Store Announcement</h3>
+            <textarea id="settingAnnouncement" rows="4" placeholder="Optional customer announcement"></textarea>
+          </article>
+          <article class="portal-card settings-card">
+            <span class="settings-kicker">PAYMENT METHODS</span>
+            <h3>Accepted Payments</h3>
+            <label class="check-row"><input id="settingWallet" type="checkbox"> Surae Credits</label>
+            <label class="check-row"><input id="settingBank" type="checkbox"> Bank</label>
+            <label class="check-row"><input id="settingGCash" type="checkbox"> GCash</label>
+            <label class="check-row"><input id="settingPayMaya" type="checkbox"> PayMaya</label>
+          </article>
+          <article class="portal-card settings-card danger-zone">
+            <span class="settings-kicker">CATALOG TOOLS</span>
+            <h3>Reset Product Catalog</h3>
+            <p>Restore the original prototype catalog and remove local catalog edits.</p>
+            <button class="portal-secondary" id="resetCatalog" type="button">RESET CATALOG</button>
+          </article>
+        </div>
+        <div class="settings-save-row">
+          <button class="portal-primary" id="saveStoreSettings" type="button">SAVE WEBSITE SETTINGS</button>
+          <span id="settingsMessage"></span>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <!-- Order editor -->
+  <div class="portal-modal" id="orderModal" aria-hidden="true">
+    <div class="portal-modal-backdrop" data-close-order-modal></div>
+    <section class="portal-modal-panel order-editor-panel">
+      <header>
+        <div><span>INVOICE MANAGEMENT</span><h2 id="orderModalTitle">NEW INVOICE</h2></div>
+        <button type="button" data-close-order-modal>×</button>
+      </header>
+      <form class="admin-manage-body order-form" id="orderForm">
+        <input id="orderId" type="hidden">
+        <div class="manage-grid">
+          <label><span>CUSTOMER NAME</span><input id="orderCustomerName" required></label>
+          <label><span>ACCOUNT NUMBER</span><input id="orderAccountNumber" placeholder="Optional"></label>
+        </div>
+        <div class="manage-grid">
+          <label><span>USER INFO / GAME ACCOUNT ID</span>
+  <input id="orderUserInfo" placeholder="Player ID / UID / Riot ID / Game Account No.">
+  <small id="orderUserInfoHelp" class="field-help">Enter the player's game account ID.</small>
+</label>
+          <label><span>GAME</span>
+            <select id="orderGame" required>
+              <option>MLBB</option><option>CODM</option><option>VALORANT</option><option>ROBLOX</option><option>HOK</option><option>OTHER</option>
+            </select>
+          </label>
+        </div>
+        <label class="admin-field order-product-field"><span>PRODUCT / SERVICE</span><input id="orderProduct" required></label>
+        <div class="manage-grid">
+          <label><span>AMOUNT (PHP)</span><input id="orderAmount" type="number" min="0" step=".01" required></label>
+          <label><span>PAYMENT</span>
+            <select id="orderPayment"><option>Bank</option><option>GCash</option><option>PayMaya</option><option>Surae Credits</option><option>Manual</option></select>
+          </label>
+        </div>
+        <div class="manage-grid">
+          <label><span>STATUS</span>
+            <select id="orderStatus">
+              <option>New Order</option><option>Awaiting Payment</option><option>Processing</option><option>Completed</option><option>Cancelled</option><option>Rejected</option>
+            </select>
+          </label>
+          <label><span>ASSIGNED TO</span><input id="orderHandler" placeholder="Unassigned"></label>
+        </div>
+        <label class="admin-field order-note-field"><span>INVOICE NOTES</span><textarea id="orderNote" rows="4" placeholder="Server, player ID, instructions, reference, etc."></textarea></label>
+
+        <section class="admin-payment-proof" id="adminPaymentProof" hidden>
+          <div class="admin-approval-banner" id="adminApprovalBanner">
+            <span>ADMIN APPROVAL</span>
+            <strong id="adminApprovalStatus">AWAITING APPROVAL</strong>
+            <small id="adminApprovalMessage">Completing this invoice will confirm fulfillment.</small>
+          </div>
+          <div class="admin-proof-meta">
+            <span>PAYMENT REFERENCE</span>
+            <strong id="adminPaymentReference">—</strong>
+          </div>
+          <div class="admin-proof-image-wrap" id="adminProofImageWrap">
+            <img id="adminProofImage" alt="Customer payment screenshot">
+          </div>
+          <small>Verify that the reference number above is visible in the uploaded screenshot before processing the invoice.</small>
+          <div class="admin-proof-actions" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+            <button class="portal-primary" id="verifyPaymentProof" type="button">VERIFY PAYMENT</button>
+            <button class="order-delete-btn" id="unverifyPaymentProof" type="button">MARK UNVERIFIED</button>
+          </div>
+        </section>
+
+        <button class="portal-primary wide" type="submit">SAVE INVOICE</button>
+        <button class="order-delete-btn" id="deleteOrder" type="button">DELETE ORDER</button>
+      </form>
+    </section>
+  </div>
+
+  <!-- Product editor -->
+  <div class="portal-modal" id="productModal" aria-hidden="true">
+    <div class="portal-modal-backdrop" data-close-product-modal></div>
+    <section class="portal-modal-panel product-editor-panel">
+      <header>
+        <div><span>CATALOG EDITOR</span><h2 id="productModalTitle">ADD PRODUCT</h2></div>
+        <button type="button" data-close-product-modal>×</button>
+      </header>
+      <form class="admin-manage-body product-form" id="productForm">
+        <input id="productId" type="hidden">
+        <div class="manage-grid">
+          <label><span>PRODUCT NAME</span><input id="productName" required></label>
+          <label><span>PRODUCT TYPE / SERVICE</span>
+            <select id="productCatalogType" required>
+              <option value="regular">REGULAR STORE</option>
+              <option value="skin-gifting">SKIN GIFTING</option>
+            </select>
+          </label>
+        </div>
+        <div class="manage-grid">
+          <label><span>GAME</span>
+            <select id="productGame" required><option>MLBB</option><option>CODM</option><option>VALORANT</option><option>ROBLOX</option><option>HOK</option></select>
+          </label>
+          <label class="skin-gifting-admin-note" id="skinGiftingAdminNote"><span>SKIN GIFTING SUPPORT</span><small>Skin Gifting products are separate from regular top-ups. Supported games: MLBB and HOK. MLBB US server gifting is not available.</small></label>
+        </div>
+        <div class="manage-grid">
+          <label><span>REGION / SERVER</span><input id="productRegion" value="GLOBAL" required></label>
+          <label><span>CATEGORY</span><input id="productCategory" placeholder="DIAMONDS / CP / VP / SERVICE" required></label>
+        </div>
+        <div class="manage-grid">
+          <label><span>PRICE (PHP)</span><input id="productPrice" type="number" min="0" step=".01" required></label>
+          <label><span>STOCK STATUS</span>
+            <select id="productStock"><option>Available</option><option>Pre-order</option><option>Out of Stock</option></select>
+          </label>
+        </div>
+        <label class="admin-field"><span>DESCRIPTION</span><textarea id="productDescription" rows="4"></textarea></label>
+        <label class="check-row product-visible"><input id="productActive" type="checkbox" checked> Visible on storefront</label>
+        <button class="portal-primary wide" type="submit">SAVE PRODUCT</button>
+      </form>
+    </section>
+  </div>
+
+  <!-- Customer manager -->
+  <div class="portal-modal" id="managePlayerModal" aria-hidden="true">
+    <div class="portal-modal-backdrop" data-close-admin-modal></div>
+    <section class="portal-modal-panel admin-manage-panel">
+      <header>
+        <div><span>PLAYER MANAGEMENT</span><h2 id="managePlayerName">ACCOUNT</h2></div>
+        <button type="button" data-close-admin-modal>×</button>
+      </header>
+      <div class="admin-manage-body">
+        <div class="manage-account-meta">
+          <div><span>ACCOUNT NUMBER</span><strong id="manageAccountNumber">—</strong></div>
+          <div><span>EMAIL</span><strong id="manageEmail">—</strong></div>
+          <div><span>CURRENT CREDITS</span><strong>₱<b id="manageCredits">0.00</b></strong></div>
+        </div>
+        <div class="manage-grid">
+          <label><span>CREDIT ADJUSTMENT</span><input id="adminCreditAmount" type="number" step="10" placeholder="e.g. 500 or -100"></label>
+          <label><span>REASON</span><input id="adminCreditReason" type="text" placeholder="Manual adjustment"></label>
+        </div>
+        <button class="portal-primary wide" id="applyCreditAdjustment" type="button">APPLY CREDIT ADJUSTMENT</button>
+        <div class="manage-grid second">
+          <label><span>ACCOUNT STATUS</span><select id="adminAccountStatus"><option>Active</option><option>On Hold</option><option>Suspended</option></select></label>
+          <button class="portal-secondary" id="saveAccountStatus" type="button">SAVE STATUS</button>
+        </div>
+        <div class="portal-note" id="adminManageMessage"></div>
+      </div>
+    </section>
+  </div>
+
+  <script src="surae-config.js"></script>
+  <script src="surae-api.js"></script>
+  <script src="cloud-auth.js"></script>
+  <script src="admin-app.js"></script>
+</body>
+</html>

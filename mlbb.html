@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#020914">
+<title>Choose MLBB Server | Surae Digital Shop</title><link rel="preconnect" href="https://yoceazwcewyksfzafhlu.supabase.co" crossorigin><link rel="dns-prefetch" href="//yoceazwcewyksfzafhlu.supabase.co">
+<link rel="stylesheet" href="styles.css">
+
+<style>
+  .skin-gifting-alert{display:none;margin:0 0 26px;padding:16px 18px;border:1px solid rgba(255,88,108,.5);background:linear-gradient(135deg,rgba(94,17,31,.45),rgba(20,13,26,.78));box-shadow:0 12px 32px rgba(0,0,0,.18);color:#f4dce2;font-size:13px;line-height:1.55}
+  .skin-gifting-alert strong{color:#ff7185;letter-spacing:.06em}
+  .skin-gifting-mode .skin-gifting-alert{display:block}
+  .skin-gifting-mode .us-card{pointer-events:none;cursor:not-allowed;filter:grayscale(1) brightness(.48);opacity:.56;border-color:rgba(255,92,111,.42)!important;box-shadow:none!important;transform:none!important}
+  .skin-gifting-mode .us-card::after{content:"SKIN GIFTING UNAVAILABLE";position:absolute;z-index:8;inset:auto 14px 14px 14px;padding:10px 12px;background:rgba(76,7,20,.92);border:1px solid rgba(255,107,127,.65);color:#ffd7dd;font-size:10px;font-weight:900;letter-spacing:.10em;text-align:center}
+  .skin-gifting-mode .us-card .server-card-enter{display:none}
+</style>
+</head>
+<body class="mlbb-server-page">
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="Surae Digital Shop home"><div class="brand-mark">S</div><div class="brand-name">SURAE<small>DIGITAL SHOP</small></div></a>
+    <nav class="nav-links"><a href="index.html">Home</a><a class="active" href="index.html#games">Games</a><a href="index.html#services">Special Services</a><a href="index.html#how">How to Order</a><a href="index.html#payment">Payment Methods</a><a href="index.html#faq">FAQ</a></nav>
+    <div class="nav-actions"><a class="icon-btn" href="index.html#games" aria-label="Search products">⌕</a><button class="icon-btn" type="button" onclick="location.href='checkout.html'" aria-label="Cart">🛒</button><button class="icon-btn generic-account-btn" type="button" onclick="location.href='index.html?login=1'" aria-label="Account">♙</button><a class="slogan" href="#servers">TOP UP NOW</a></div>
+  </div>
+</header>
+<main>
+  <section class="mlbb-server-hero">
+    <div class="wrap mlbb-server-copy">
+      <div class="mlbb-logo-label">Mobile Legends: Bang Bang</div>
+      <div class="eyebrow">Choose your region</div>
+      <h1>SELECT SERVER / REGION</h1>
+      <p>Make sure the region matches your MLBB account before ordering.</p>
+    </div>
+  </section>
+
+  <section class="mlbb-servers" id="servers">
+    <div class="wrap">
+      <div class="skin-gifting-alert" role="status"><strong>US SERVER — NOT AVAILABLE FOR SKIN GIFTING</strong><br>Skin gifting cannot be processed for accounts on the United States server. Please choose another supported server/region. Regular US-server top-up services remain available outside the Skin Gifting service.</div>
+      <div class="server-grid-real server-image-grid">
+        <a class="server-card-real server-image-card ph-card" href="mlbb-ph.html" aria-label="Philippines server"><div class="server-card-shade"></div>
+          <div class="server-card-copy">
+            <span class="server-region-label">MLBB REGION</span>
+            <h3>PHILIPPINES</h3>
+            <span class="server-code-visible">PH SERVER</span>
+          </div>
+          <div class="server-card-enter" aria-hidden="true">↗</div>
+          <span class="sr-only">Philippines — PH SERVER</span></a>
+        <a class="server-card-real server-image-card id-card" href="mlbb-id.html" aria-label="Indonesia server"><div class="server-card-shade"></div>
+          <div class="server-card-copy">
+            <span class="server-region-label">MLBB REGION</span>
+            <h3>INDONESIA</h3>
+            <span class="server-code-visible">ID SERVER</span>
+          </div>
+          <div class="server-card-enter" aria-hidden="true">↗</div>
+          <span class="sr-only">Indonesia — ID SERVER</span></a>
+        <a class="server-card-real server-image-card my-card" href="mlbb-my.html" aria-label="Malaysia server"><div class="server-card-shade"></div>
+          <div class="server-card-copy">
+            <span class="server-region-label">MLBB REGION</span>
+            <h3>MALAYSIA</h3>
+            <span class="server-code-visible">MY SERVER</span>
+          </div>
+          <div class="server-card-enter" aria-hidden="true">↗</div>
+          <span class="sr-only">Malaysia — MY SERVER</span></a>
+        <a class="server-card-real server-image-card sg-card" href="mlbb-sg.html" aria-label="Singapore server"><div class="server-card-shade"></div>
+          <div class="server-card-copy">
+            <span class="server-region-label">MLBB REGION</span>
+            <h3>SINGAPORE</h3>
+            <span class="server-code-visible">SG SERVER</span>
+          </div>
+          <div class="server-card-enter" aria-hidden="true">↗</div>
+          <span class="sr-only">Singapore — SG SERVER</span></a>
+        <a class="server-card-real server-image-card us-card" href="mlbb-us.html" aria-label="United States server" data-us-server="true"><div class="server-card-shade"></div>
+          <div class="server-card-copy">
+            <span class="server-region-label">MLBB REGION</span>
+            <h3>UNITED STATES</h3>
+            <span class="server-code-visible">US SERVER</span>
+          </div>
+          <div class="server-card-enter" aria-hidden="true">↗</div>
+          <span class="sr-only">United States — US SERVER</span></a>
+        <a class="server-card-real server-image-card br-card" href="mlbb-br.html" aria-label="Brazil server"><div class="server-card-shade"></div>
+          <div class="server-card-copy">
+            <span class="server-region-label">MLBB REGION</span>
+            <h3>BRAZIL</h3>
+            <span class="server-code-visible">BR SERVER</span>
+          </div>
+          <div class="server-card-enter" aria-hidden="true">↗</div>
+          <span class="sr-only">Brazil — BR SERVER</span></a>
+        <a class="server-card-real server-image-card ru-card" href="mlbb-ru.html" aria-label="Russia server"><div class="server-card-shade"></div>
+          <div class="server-card-copy">
+            <span class="server-region-label">MLBB REGION</span>
+            <h3>RUSSIA</h3>
+            <span class="server-code-visible">RU SERVER</span>
+          </div>
+          <div class="server-card-enter" aria-hidden="true">↗</div>
+          <span class="sr-only">Russia — RU SERVER</span></a>
+        <a class="server-card-real server-image-card tr-card" href="mlbb-tr.html" aria-label="Turkey server"><div class="server-card-shade"></div>
+          <div class="server-card-copy">
+            <span class="server-region-label">MLBB REGION</span>
+            <h3>TURKEY</h3>
+            <span class="server-code-visible">TR SERVER</span>
+          </div>
+          <div class="server-card-enter" aria-hidden="true">↗</div>
+          <span class="sr-only">Turkey — TR SERVER</span></a>
+        <a class="server-card-real server-image-card global-card global-image-card" href="mlbb-global.html" aria-label="Global server"><div class="server-card-shade"></div>
+          <div class="server-card-copy">
+            <span class="server-region-label">MLBB REGION</span>
+            <h3>GLOBAL</h3>
+            <span class="server-code-visible">ALL REGIONS</span>
+          </div>
+          <div class="server-card-enter" aria-hidden="true">↗</div>
+          <span class="sr-only">Global — ALL REGIONS</span></a>
+      </div>
+
+      <div class="server-bottom">
+        <a class="back-server-button" href="index.html#games">← BACK TO GAMES</a>
+        <div class="server-trust"><span><b>♢</b> SECURE TRANSACTIONS</span><span><b>ϟ</b> FAST DELIVERY</span><span><b>◉</b> RELIABLE SUPPORT</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="footer"><div class="wrap footer-main"><div class="footer-brand"><div class="brand-mark">S</div><div class="brand-name">SURAE<small>DIGITAL SHOP</small></div></div><div class="trust"><div><i>♢</i> Secure Transactions</div><div><i>ϟ</i> Fast Delivery</div><div><i>◉</i> Reliable Support</div></div><div class="footer-tag">GAMERS<br>PLAY<br>TOGETHER</div></div></footer>
+<script src="surae-config.js"></script><script src="surae-api.js"></script><script src="account-store.js"></script><script src="store-session.js"></script>
+<script>
+(function(){
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('mode') !== 'skin-gifting') return;
+  document.body.classList.add('skin-gifting-mode');
+  const us = document.querySelector('[data-us-server="true"]');
+  if (us) {
+    us.removeAttribute('href');
+    us.setAttribute('aria-disabled','true');
+    us.setAttribute('title','Skin gifting is unavailable for US-server accounts.');
+  }
+  document.querySelectorAll('#servers a.server-card-real').forEach(card => {
+    if (card === us) return;
+    const href = card.getAttribute('href');
+    if (!href) return;
+    const url = new URL(href, window.location.href);
+    url.searchParams.set('mode','skin-gifting');
+    card.setAttribute('href', url.pathname.split('/').pop() + '?' + url.searchParams.toString());
+  });
+})();
+</script>
+</body>
+</html>

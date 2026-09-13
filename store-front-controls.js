@@ -1,0 +1,1 @@
+(async()=>{const C=window.SuraeCatalog;if(!C)return;await C.ready;const s=C.getSettings();if(s.announcement){const bar=document.createElement('div');bar.className='surae-admin-announcement';bar.textContent=s.announcement;document.body.prepend(bar)}if(!s.storeOnline)document.body.classList.add('surae-store-offline')})();

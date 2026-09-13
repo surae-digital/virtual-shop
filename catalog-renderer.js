@@ -1,0 +1,16 @@
+(async() => {
+  const C=window.SuraeCatalog,Cart=window.SuraeCart;if(!C)return;await C.ready;
+  const body=document.body,game=body.dataset.catalogGame,region=body.dataset.catalogRegion||'GLOBAL',params=new URLSearchParams(location.search),catalogType=params.get('mode')==='skin-gifting'?'skin-gifting':'regular',host=document.querySelector('.product-list');if(!game||!host)return;
+  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const money=n=>'₱'+Number(n).toLocaleString('en-PH',{minimumFractionDigits:2,maximumFractionDigits:2});
+  function render(){
+    if(catalogType==='skin-gifting'){body.classList.add('skin-gifting-catalog');const heading=document.querySelector('.section-title-row h2'),eyebrow=document.querySelector('.section-title-row .eyebrow');if(heading)heading.textContent='SKIN GIFTING PRODUCTS';if(eyebrow)eyebrow.textContent=`${game} • Skin Gifting`;}
+    const s=C.getSettings();const items=C.getCatalog().filter(x=>x.active!==false&&(x.catalogType||'regular')===catalogType&&x.game===game&&(x.region===region||(region==='GLOBAL'&&x.region==='GLOBAL')));host.innerHTML='';
+    if(!s.storeOnline){host.innerHTML='<div class="catalog-empty">STORE IS TEMPORARILY OFFLINE. Please check again later.</div>';return}
+    if(!items.length){host.innerHTML=catalogType==='skin-gifting'?'<div class="catalog-empty"><strong>NO SKIN GIFTING PRODUCTS AVAILABLE YET.</strong><br>New products will appear here once added by the shop administrator.</div>':'<div class="catalog-empty">No active products in this catalog yet.</div>';return}
+    items.forEach(item=>{const priced=Number(item.price)>0,available=String(item.stockStatus||'Available').toLowerCase()!=='out of stock';const card=document.createElement('div');card.className='product-card';card.innerHTML=`<div class="badge">${esc(catalogType==='skin-gifting'?'SKIN GIFTING':(item.category||'DIGITAL PRODUCT'))}</div><h3>${esc(item.name)}</h3><p>${esc(item.description||'')}</p><div class="price">${priced?money(item.price):'PRICE TO BE SET'}</div><div class="catalog-stock ${String(item.stockStatus||'Available').toLowerCase().replace(/\s+/g,'-')}">${esc(item.stockStatus||'Available')}</div><div class="product-actions"><button class="add-cart" type="button" data-add-cart="${esc(item.id)}" ${(!priced||!available)?'disabled':''}>${priced&&available?'＋ ADD TO CART':'UNAVAILABLE'}</button><a class="buy ${(!priced||!available)?'disabled':''}" href="${priced&&available?`checkout.html?buy=${encodeURIComponent(item.id)}`:'#'}" ${(!priced||!available)?'aria-disabled="true"':''}>${priced&&available?'BUY NOW →':'COMING SOON'}</a></div>`;host.appendChild(card)});
+    host.querySelectorAll('[data-add-cart]').forEach(btn=>btn.addEventListener('click',()=>{if(btn.disabled||!Cart)return;Cart.add(btn.dataset.addCart,1);const old=btn.textContent;btn.textContent='✓ ADDED';btn.classList.add('added');window.SuraeCartUI?.toast('Added to cart');setTimeout(()=>{btn.textContent=old;btn.classList.remove('added')},1200)}));
+    window.SuraeCartUI?.update();
+  }
+  render();
+  let first=true;window.addEventListener('surae-catalog-ready',()=>{if(first){first=false;return}render()});
+})();

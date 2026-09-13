@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Skin Gifting | Surae Digital Shop</title><link rel="preconnect" href="https://yoceazwcewyksfzafhlu.supabase.co" crossorigin><link rel="dns-prefetch" href="//yoceazwcewyksfzafhlu.supabase.co">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .gifting-select{min-height:calc(100vh - 80px);padding:72px 20px 90px;background:radial-gradient(circle at 50% 0%,rgba(54,83,185,.20),transparent 40%),#07101f;color:#fff}
+    .gifting-wrap{max-width:1160px;margin:0 auto}
+    .gifting-back{display:inline-flex;align-items:center;gap:8px;color:#a9bad8;text-decoration:none;font-weight:800;letter-spacing:.08em;font-size:12px;margin-bottom:34px}
+    .gifting-back:hover{color:#43e2ff}
+    .gifting-head{text-align:center;max-width:760px;margin:0 auto 42px}
+    .gifting-kicker{font-size:12px;letter-spacing:.24em;color:#43e2ff;font-weight:900;text-transform:uppercase;margin-bottom:10px}
+    .gifting-head h1{font-size:clamp(38px,6vw,72px);line-height:.95;margin:0 0 18px;text-transform:uppercase;letter-spacing:-.03em}
+    .gifting-head h1 em{font-style:normal;color:#43e2ff}
+    .gifting-head p{margin:0;color:#aebbd0;font-size:16px;line-height:1.7}
+    .gifting-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+    .gifting-game{position:relative;min-height:440px;overflow:hidden;border:1px solid rgba(112,164,255,.28);background:#0a1425;text-decoration:none;color:#fff;box-shadow:0 20px 50px rgba(0,0,0,.22);transition:.25s ease}
+    .gifting-game:hover{transform:translateY(-6px);border-color:#43e2ff;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+    .gifting-game-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .35s ease}
+    .gifting-game:hover .gifting-game-bg{transform:scale(1.045)}
+    .gifting-game:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(3,8,18,.08) 15%,rgba(3,8,18,.42) 50%,rgba(3,8,18,.96) 100%)}
+    .gifting-game-copy{position:absolute;z-index:2;left:0;right:0;bottom:0;padding:30px}
+    .gifting-tag{display:inline-block;border:1px solid rgba(67,226,255,.55);color:#43e2ff;padding:7px 10px;font-size:10px;font-weight:900;letter-spacing:.14em;margin-bottom:13px;background:rgba(6,18,34,.72)}
+    .gifting-game h2{font-size:clamp(28px,4vw,45px);line-height:1;margin:0 0 10px;text-transform:uppercase}
+    .gifting-game p{margin:0 0 20px;color:#c1ccdc;line-height:1.55;max-width:480px}
+    .gifting-open{display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,.14);padding-top:17px;font-size:12px;font-weight:900;letter-spacing:.12em;color:#fff}
+    .gifting-open b{font-size:22px;color:#43e2ff}
+    .gifting-note{text-align:center;color:#7789a5;font-size:12px;margin-top:28px}
+    @media(max-width:760px){.gifting-select{padding-top:42px}.gifting-grid{grid-template-columns:1fr}.gifting-game{min-height:360px}.gifting-game-copy{padding:24px}}
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html"><div class="brand-mark">S</div><div class="brand-name">SURAE<small>DIGITAL SHOP</small></div></a>
+      <nav class="nav-links"><a href="index.html">Home</a><a href="index.html#games">Games</a><a class="active" href="index.html#services">Special Services</a><a href="index.html#how">How to Order</a><a href="index.html#payment">Payment Methods</a><a href="index.html#faq">FAQ</a></nav>
+      <div class="nav-actions"><a class="slogan" href="index.html#games">ENTER SHOP</a></div>
+    </div>
+  </header>
+
+  <main class="gifting-select">
+    <div class="gifting-wrap">
+      <a class="gifting-back" href="index.html#services">← BACK TO SPECIAL SERVICES</a>
+      <div class="gifting-head">
+        <div class="gifting-kicker">Player Gifting</div>
+        <h1>CHOOSE YOUR <em>GAME</em></h1>
+        <p>Select the game you want to purchase a skin gift for. You will be routed to the corresponding game shop to continue your order.</p>
+      </div>
+
+      <div class="gifting-grid">
+        <a class="gifting-game" href="mlbb.html?mode=skin-gifting">
+          <div class="gifting-game-bg" style="background-image:url('assets/hd/mlbb-card-hd.webp')"></div>
+          <div class="gifting-game-copy">
+            <div class="gifting-tag">SKIN GIFTING</div>
+            <h2>Mobile Legends:<br>Bang Bang</h2>
+            <p>Browse available MLBB products and continue with your Mobile Legends skin gifting request.</p>
+            <div class="gifting-open">CHOOSE MLBB <b>↗</b></div>
+          </div>
+        </a>
+
+        <a class="gifting-game" href="hok.html?mode=skin-gifting">
+          <div class="gifting-game-bg" style="background-image:url('assets/hd/hok-card-hd.webp')"></div>
+          <div class="gifting-game-copy">
+            <div class="gifting-tag">SKIN GIFTING</div>
+            <h2>Honor of<br>Kings</h2>
+            <p>Browse available HOK products and continue with your Honor of Kings skin gifting request.</p>
+            <div class="gifting-open">CHOOSE HOK <b>↗</b></div>
+          </div>
+        </a>
+      </div>
+      <div class="gifting-note">Choose a game to continue. No purchase is made on this screen.</div>
+    </div>
+  </main>
+  <script src="surae-config.js"></script><script src="surae-api.js"></script><script src="account-store.js"></script>
+  <script src="store-session.js"></script>
+</body>
+</html>

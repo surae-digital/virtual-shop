@@ -1,0 +1,57 @@
+SURAE DIGITAL SHOP — FINAL SOURCE QA REPORT
+Build: Production v51
+Date: 2026-09-13
+
+SCOPE
+This QA pass was run against the exact source packaged in the final ZIP.
+It covers source integrity, frontend syntax, Supabase Edge Function parsing,
+security invariants, checkout/cart behavior, page references, order-status UI,
+and deployment configuration structure.
+
+PASSED CHECKS
+- All 17 standalone browser JavaScript files passed Node syntax validation.
+- All 6 inline HTML scripts passed JavaScript syntax validation.
+- All 5 Supabase TypeScript / Edge Function files passed TypeScript parse/transpile checks.
+- 35/35 static/security assertions passed.
+- 0 missing local HTML page/script/style/image references.
+- 0 duplicate HTML IDs.
+- 0 externally hotlinked loaded page assets.
+- GitHub Pages workflow YAML parsed successfully.
+- Cart quantity behavior passed: merge, max-99 cap and removal behavior.
+- Supabase browser URL uses the project base URL, not /rest/v1/.
+- No service-role or Resend secret is embedded in browser configuration.
+- Guest checkout supports Bank / GCash / PayMaya.
+- Registered checkout additionally supports Surae Credits.
+- Top-up cannot be paid with Surae Credits.
+- Payment proof validation exists client-side and server-side (JPG/PNG/WebP, <=5 MB).
+- Server checks actual uploaded image signatures before Storage upload.
+- Official product prices and availability are resolved on the backend at checkout.
+- Mixed game, region/server and regular/skin-gifting carts are rejected server-side.
+- Checkout idempotency uses a 256-bit request identifier and stored SHA-256 request hash.
+- Credit debit/order creation is performed atomically in a database RPC.
+- External order creation is performed through the hardened database RPC.
+- Financial RPCs are revoked from public/anon/authenticated browser roles and executable by service_role only.
+- Duplicate payment-reference protection is normalized and database-enforced.
+- Guest tracking uses a secret token; only its hash is stored in the order database.
+- Resend API access exists only in Supabase Edge Function code via environment secrets.
+- Staff/admin authorization is server-side.
+- Product/settings/rates/credit/user-status actions are admin-only.
+- Admin UI includes all supported order states: New Order, Awaiting Payment, Processing, Completed, Cancelled and Rejected.
+- Cancelled/Rejected/fulfilled orders cannot be dragged as active Kanban work.
+- Admin and guest-tracking utility pages are marked noindex,nofollow.
+- No old localStorage order/catalog database or IndexedDB proof store remains as the financial source of truth.
+- No demo admin password remains in the frontend.
+
+IMPORTANT DEPLOYMENT NOTE
+No source-only QA can prove a third-party production environment before it is deployed.
+After the Supabase migration/functions, Resend secrets, GitHub Pages and Z.com DNS are configured,
+run the live verification steps in DEPLOYMENT-CHECKLIST.md before accepting real customer payments.
+This includes one guest external-payment order, one registered external-payment order,
+one Surae Credits order, one insufficient-credit attempt, one wallet top-up, Admin verification,
+status emails, guest tracking, cancellation/refund behavior and a duplicate/retry test.
+
+KNOWN CONFIGURATION STILL REQUIRED
+- surae-config.js -> siteUrl is configured to https://suraedigitalshop.com.
+- Supabase server-side secrets must be configured as documented.
+- Resend sending domain/DNS must be verified.
+- Seeded products with price 0.00 must be given official prices in Admin before sale.
