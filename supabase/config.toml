@@ -1,0 +1,10 @@
+project_id = "yoceazwcewyksfzafhlu"
+
+[functions.shop-api]
+verify_jwt = false
+
+[functions.track-order]
+verify_jwt = false
+
+[functions.resend-webhook]
+verify_jwt = false
